@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PCOS Professional Test</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: linear-gradient(to right, #a18cd1, #fbc2eb);
+    }
+  </style>
+</head>
+
+<body class="min-h-screen flex flex-col items-center justify-center px-4 text-white">
+  <h1 class="text-4xl font-bold mb-6">PCOS Professional Test</h1>
+
+  <form method="post" action="/predict_pcos" enctype="multipart/form-data" class="w-full max-w-lg space-y-4 bg-white bg-opacity-10 p-6 rounded-lg">
+    
+    <!-- Hormonal Inputs -->
+    <div><input type="number" name="FSH" placeholder="FSH (mIU/mL)" class="w-full p-2 rounded text-black" step="any" required /></div>
+    <div><input type="number" name="LH" placeholder="LH (mIU/mL)" class="w-full p-2 rounded text-black" step="any" required /></div>
+    <div><input type="number" name="FSH_LH" placeholder="FSH/LH Ratio" class="w-full p-2 rounded text-black" step="any" required /></div>
+    <div><input type="number" name="AMH" placeholder="AMH (ng/mL)" class="w-full p-2 rounded text-black" step="any" required /></div>
+    <div><input type="number" name="PRL" placeholder="PRL (ng/mL)" class="w-full p-2 rounded text-black" step="any" required /></div>
+    <div><input type="number" name="VitD" placeholder="Vitamin D3 (ng/mL)" class="w-full p-2 rounded text-black" step="any" required /></div>
+    <div><input type="number" name="PRG" placeholder="PRG (ng/mL)" class="w-full p-2 rounded text-black" step="any" required /></div>
+    <div><input type="number" name="RBS" placeholder="RBS (mg/dl)" class="w-full p-2 rounded text-black" step="any" required /></div>
+    <div><input type="number" name="TSH" placeholder="TSH (mIU/L)" class="w-full p-2 rounded text-black" step="any" required /></div>
+
+    <!-- Ultrasound Image Upload -->
+    <div><input type="file" name="ultrasound_image" accept="image/*" class="w-full p-2 rounded text-black bg-white" required /></div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="w-full bg-red-600 hover:bg-red-700 py-3 rounded-full font-bold text-white transition">
+      Submit
+    </button>
+  </form>
+
+  <!-- Result Display -->
+  {% if result %}
+  <div class="mt-8 text-center">
+      <h2 class="text-2xl font-semibold text-green-600">{{ result.diagnosis }}</h2>
+      <h3 class="text-lg text-red-500">{{ result.risk_level }}</h3>
+      <h3 class="text-lg text-orange-500">{{ result.combined_risk }}</h3>
+  </div>
+  {% endif %}
+</body>
+</html>
