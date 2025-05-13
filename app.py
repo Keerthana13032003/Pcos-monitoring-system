@@ -19,8 +19,8 @@ import tensorflow as tf
 
 # Load models
 model = pickle.load(open("pcos_model.pkl", "rb"))  # Symptom-based model
-xgb_model = joblib.load("F:/Ultrasound/xgb_pcos_model.pkl")  # Hormonal-based model
-scaler = joblib.load("F:/Ultrasound/scaler.pkl")  # Hormonal data scaler
+xgb_model = joblib.load("xgb_pcos_model.pkl")  # Hormonal-based model
+scaler = joblib.load("scaler.pkl")  # Hormonal data scaler
 cnn_model = load_model("bestmodel.h5")  # CNN for ultrasound
 
 app = FastAPI()
